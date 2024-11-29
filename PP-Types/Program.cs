@@ -1,10 +1,13 @@
 ﻿// Write required code.
 
 // Data - do not change it in code!
+using System.Globalization;
+using System.Xml;
+
 string[] names = {
-    "Mickey Mouse", "Minnie Mouse", "Donald Duck", "Goofy", "Pluto", "Daisy Duck", "Simba", "Nala", 
-    "Timon", "Pumbaa", "Mufasa", "Ariel", "Flounder", "Sebastian", "Ursula", "Belle", "Beast", "Gaston", 
-    "Cinderella", "Prince Charming", "Aurora", "Maleficent", "Rapunzel", "Flynn Rider", "Elsa", "Anna", 
+    "Mickey Mouse", "Minnie Mouse", "Donald Duck", "Goofy", "Pluto", "Daisy Duck", "Simba", "Nala",
+    "Timon", "Pumbaa", "Mufasa", "Ariel", "Flounder", "Sebastian", "Ursula", "Belle", "Beast", "Gaston",
+    "Cinderella", "Prince Charming", "Aurora", "Maleficent", "Rapunzel", "Flynn Rider", "Elsa", "Anna",
     "Olaf", "Moana", "Maui", "Hercules"
 };
 
@@ -17,6 +20,25 @@ void PrintGroups(string[] t, int perLine)
 
     // Write required code.
 
+    string output = "";
+    int index = 0;
+    int counter = 0;
+
+    while (index < t.Length - 1)
+    {
+
+        if (counter >= perLine)
+        {
+            output += "\n";
+            counter = 0;
+        }
+        output += t[index] + ", ";
+        index++;
+        counter++;
+    }
+    output += t[index] + ".";
+
+    Console.WriteLine(output);
 }
 
 
@@ -29,6 +51,38 @@ void PrintColumns(string[] t, int perLine, int width)
 {
 
     // Write required code.
+    string output = "";
+    int index = 0;
+    int counter = 0;
+
+    while (index < t.Length)
+    {
+
+        if (counter >= perLine)
+        {
+            output = output[..^2] + "\n";
+            counter = 0;
+        }
+
+        for (int i = 0; i < width; i++)
+        {
+            if (i < t[index].Length)
+                output += t[index][i];
+            else
+                output += " ";
+        }
+        output += "| ";
+        index++;
+        counter++;
+        if (counter >= perLine)
+        {
+            output = output[..^2] + "\n";
+            counter = 0;
+        }
+    }
+
+    Console.WriteLine(output);
+
 
 }
 
